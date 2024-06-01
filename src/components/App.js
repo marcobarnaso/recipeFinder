@@ -26,15 +26,15 @@ function App() {
     setSearchTerm(term);
   };
 
-  const fetchvideos = async (videoTerm) => {
-    const {
-      data: {videos},
-    } = await youtube.get("/search", {
-      params: {
-        q: videoTerm
-      }
-    })
-  }
+  // const fetchvideos = async (videoTerm) => {
+  //   const {
+  //     data: {videos},
+  //   } = await youtube.get("/search", {
+  //     params: {
+  //       q: videoTerm
+  //     }
+  //   })
+  // }
 
   useEffect(() => {
     fetchRecipes(searchTerm);

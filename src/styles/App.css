@@ -63,3 +63,8 @@ body {
 .header {
   color: #dadce1;
 }
+
+.ui.segment {
+  background-color: #484a4d;
+  color: #1b1c1d;
+}

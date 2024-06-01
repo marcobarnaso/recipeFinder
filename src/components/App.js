@@ -4,6 +4,7 @@ import "../styles/App.css";
 import Header from "./Header";
 import SearchBar from "./SearchBar";
 import RecipeList from "./RecipeList";
+import youtube from "../services/Youtube";
 
 console.log(process.env);
 
@@ -24,6 +25,16 @@ function App() {
     setRecipes(hits);
     setSearchTerm(term);
   };
+
+  const fetchvideos = async (videoTerm) => {
+    const {
+      data: {videos},
+    } = await youtube.get("/search", {
+      params: {
+        q: videoTerm
+      }
+    })
+  }
 
   useEffect(() => {
     fetchRecipes(searchTerm);

@@ -9,8 +9,8 @@ const RecipeCard = (recipe, onRecipeSelect) => {
     <>
       <div className="card">
         <div className="ui medium rounded image">
-          <div className="ui blue ribbon label">
-            <i className="spoon icon"></i> {recipe.recipe.recipe.label}
+          <div className="ui grey ribbon label">
+            <i className="utensils icon"></i> {recipe.recipe.recipe.label}
           </div>
           <img
             src={recipe.recipe.recipe.image}

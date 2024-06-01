@@ -1,24 +1,24 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
 import {
   AccordionTitle,
   AccordionContent,
   Accordion,
   Icon,
-} from 'semantic-ui-react'
-import IngredientList from './ingredientList'
+} from "semantic-ui-react";
+import IngredientList from "./ingredientList";
 
 export default class AccordionStandard extends Component {
-  state = { activeIndex: 0 }
+  state = { activeIndex: 0 };
 
   handleClick = (e, titleProps) => {
-    const { index } = titleProps
-    const { activeIndex } = this.state
-    const newIndex = activeIndex === index ? -1 : index
+    const { index } = titleProps;
+    const { activeIndex } = this.state;
+    const newIndex = activeIndex === index ? -1 : index;
 
-    this.setState({ activeIndex: newIndex })
-  }
+    this.setState({ activeIndex: newIndex });
+  };
   render() {
-    const { activeIndex } = this.state
+    const { activeIndex } = this.state;
     return (
       <Accordion>
         <AccordionTitle
@@ -26,12 +26,15 @@ export default class AccordionStandard extends Component {
           index={0}
           onClick={this.handleClick}
         >
-          <Icon name='dropdown' />
-          Ingredients
-          <Accordion/>
+          <Icon name="dropdown" />
+          <a className="ui orange image label">
+          <i className="spoon icon"></i>
+            Ingredients
+          </a>
+          <Accordion />
         </AccordionTitle>
         <AccordionContent active={activeIndex === 0}>
-          <IngredientList ingredients={this.props.ingredients}/>
+          <IngredientList ingredients={this.props.ingredients} />
         </AccordionContent>
 
         <AccordionTitle
@@ -39,8 +42,11 @@ export default class AccordionStandard extends Component {
           index={1}
           onClick={this.handleClick}
         >
-          <Icon name='dropdown' />
-          Preparation
+          <Icon name="dropdown" />
+          <a className="ui brown image label">
+          <i className="clock outline icon"></i>
+            Preparation
+          </a>
         </AccordionTitle>
         <AccordionContent active={activeIndex === 1}>
           <p>
@@ -49,30 +55,7 @@ export default class AccordionStandard extends Component {
             compatible with their own lifestyle and desires from a companion.
           </p>
         </AccordionContent>
-
-        <AccordionTitle
-          active={activeIndex === 2}
-          index={2}
-          onClick={this.handleClick}
-        >
-          <Icon name='dropdown' />
-          How do you acquire a dog?
-        </AccordionTitle>
-        <AccordionContent active={activeIndex === 2}>
-          <p>
-            Three common ways for a prospective owner to acquire a dog is from
-            pet shops, private owners, or shelters.
-          </p>
-          <p>
-            A pet shop may be the most convenient way to buy a dog. Buying a dog
-            from a private owner allows you to assess the pedigree and
-            upbringing of your dog before choosing to take it home. Lastly,
-            finding your dog from a shelter, helps give a good home to a dog who
-            may not find one so readily.
-          </p>
-        </AccordionContent>
       </Accordion>
-    )
+    );
   }
 }
-

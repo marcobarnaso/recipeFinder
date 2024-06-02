@@ -28,7 +28,7 @@ export default class AccordionStandard extends Component {
         >
           <Icon name="dropdown" />
           <a className="ui orange image label">
-          <i className="spoon icon"></i>
+            <i className="spoon icon"></i>
             Ingredients
           </a>
           <Accordion />
@@ -44,16 +44,23 @@ export default class AccordionStandard extends Component {
         >
           <Icon name="dropdown" />
           <a className="ui brown image label">
-          <i className="clock outline icon"></i>
+            <i className="clock outline icon"></i>
             Preparation
           </a>
         </AccordionTitle>
         <AccordionContent active={activeIndex === 1}>
-          <p>
-            There are many breeds of dogs. Each breed varies in size and
-            temperament. Owners often select a breed of dog that they find to be
-            compatible with their own lifestyle and desires from a companion.
-          </p>
+          <a
+            href={
+              "https://www.youtube.com/results?search_query=" +
+              this.props.ingredients.recipe.recipe.label +
+              " preparation" 
+            } target="_blank" rel="noopener noreferrer" 
+          >
+            <p>
+              Click here to find a selection of videos to help you prepare this
+              recipe.
+            </p>
+          </a>
         </AccordionContent>
       </Accordion>
     );

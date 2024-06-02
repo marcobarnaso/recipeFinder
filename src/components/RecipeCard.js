@@ -2,6 +2,7 @@ import React from "react";
 import AccordionStandard from "./Accordion";
 
 const RecipeCard = (recipe, onRecipeSelect) => {
+    
   if (!recipe) {
     return <div></div>;
   }

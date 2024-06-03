@@ -1,17 +1,19 @@
 import { useState, useEffect } from "react";
+import { Routes, Route } from "react-router-dom";
 import edamam from "../services/Edamam";
 import "../styles/App.css";
 import Header from "./Header";
-import SearchBar from "./SearchBar";
-import RecipeList from "./RecipeList";
 import MenuStackable from "./Menu";
+import Home from "../pages/home";
+import Authentication from "../pages/authentication";
+import About from "../pages/about";
 
 function App() {
   const [searchTerm, setSearchTerm] = useState("beef");
   const [recipes, setRecipes] = useState([]);
-  const [selectedRecipe, setSelectedRecipe] = useState(null);
 
   const fetchRecipes = async (term) => {
+    console.log("corrio fetch recipes");
     const {
       data: { hits },
     } = await edamam.get("", {
@@ -19,7 +21,6 @@ function App() {
         q: term,
       },
     });
-    setSelectedRecipe(hits[0]);
     setRecipes(hits);
     setSearchTerm(term);
   };
@@ -28,20 +29,26 @@ function App() {
     fetchRecipes(searchTerm);
   }, [searchTerm]);
 
+  if (recipes.length === 0) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <div>
       <div className="ui container">
         <Header />
-        <MenuStackable/> 
-        <SearchBar searchTerm={fetchRecipes} />
-        <div className="ui segment">
-          <RecipeList recipes={recipes} onRecipeSelect={setSelectedRecipe} />
-        </div>
+        <MenuStackable />
+        <Routes>
+          <Route
+            path="/"
+            element={<Home searchTerm={fetchRecipes} recipes={recipes} />}
+          />
+          <Route path="/about" element={<About />} />
+          <Route path="/authentication" element={<Authentication />} />
+        </Routes>
       </div>
     </div>
   );
 }
-
-// TODO remove searchbar and recipelist and put it in the Home page, on this App.js we will only have the header, menu and switch for navigation
 
 export default App;

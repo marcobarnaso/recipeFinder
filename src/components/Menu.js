@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { MenuItem, Menu } from "semantic-ui-react";
+import { Link } from "react-router-dom";
 
 export default class MenuStackable extends Component {
   state = {};
@@ -12,10 +13,12 @@ export default class MenuStackable extends Component {
     return (
       <Menu stackable>
         <MenuItem>
-        <i className="react icon"></i>
+          <i className="react icon"></i>
         </MenuItem>
 
         <MenuItem
+          as={Link}
+          to="/"
           name="home"
           active={activeItem === "home"}
           onClick={this.handleItemClick}
@@ -24,6 +27,8 @@ export default class MenuStackable extends Component {
         </MenuItem>
 
         <MenuItem
+          as={Link}
+          to="about"
           name="about"
           active={activeItem === "about"}
           onClick={this.handleItemClick}
@@ -32,6 +37,8 @@ export default class MenuStackable extends Component {
         </MenuItem>
 
         <MenuItem
+          as={Link}
+          to="authentication"
           name="sign-in"
           active={activeItem === "sign-in"}
           onClick={this.handleItemClick}

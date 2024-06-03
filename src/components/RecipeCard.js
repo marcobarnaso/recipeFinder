@@ -1,7 +1,7 @@
 import React from "react";
 import AccordionStandard from "./Accordion";
 
-const RecipeCard = (recipe, onRecipeSelect) => {
+const RecipeCard = (recipe) => {
     
   if (!recipe) {
     return <div></div>;
@@ -16,7 +16,6 @@ const RecipeCard = (recipe, onRecipeSelect) => {
           <img
             src={recipe.recipe.recipe.image}
             alt={recipe.recipe.label}
-            onClick={() => onRecipeSelect(recipe)}
           />
         </div>
         <AccordionStandard ingredients={recipe} />

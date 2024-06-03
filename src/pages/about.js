@@ -1,27 +1,26 @@
 import React from "react";
-import Header from "../components/Header";
-import MenuStackable from "../components/Menu";
+import dog from "../images/dog.png"
 
 const About = () => {
   return (
     <div>
       <div class="ui card">
         <div class="image">
-          <img src="/images/avatar2/large/kristy.png" />
+          <img src={dog} alt="Me"/>
         </div>
         <div class="content">
-          <a class="header">Kristy</a>
+          <a class="header">Marvin Rojas</a>
           <div class="meta">
-            <span class="date">Joined in 2013</span>
+            <span class="date">Estudiante de Desarrollo de Software</span>
           </div>
           <div class="description">
-            Kristy is an art director living in New York.
+            Sitio de Buscador de Recetas con React
           </div>
         </div>
         <div class="extra content">
           <a>
-            <i class="user icon"></i>
-            22 Friends
+            <i class="react icon"></i>
+            2024
           </a>
         </div>
       </div>

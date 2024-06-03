@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import RecipeCard from "./RecipeCard";
 //import useVideos from "../hooks/useVideos";
 
-const RecipeList = ({ recipes, onRecipeSelect }) => {
-  console.log(recipes.length == 0);
-  if (recipes.length === 0) {
+const RecipeList = ({ recipes }) => {
+  if (Object.keys(recipes).length===0) {
+    return (<div></div>)
+  }
+  if (recipes.length===0) {
     return (
 <div className="ui warning message">
   <div className="header">
@@ -20,7 +22,6 @@ const RecipeList = ({ recipes, onRecipeSelect }) => {
     return (
       <RecipeCard
         key={recipe.recipe.uri}
-        onRecipeSelect={onRecipeSelect}
         recipe={recipe}
       />
     );

@@ -16,16 +16,16 @@ export default class MenuStackable extends Component {
         </MenuItem>
 
         <MenuItem
-          name="features"
-          active={activeItem === "features"}
+          name="home"
+          active={activeItem === "home"}
           onClick={this.handleItemClick}
         >
           Home
         </MenuItem>
 
         <MenuItem
-          name="testimonials"
-          active={activeItem === "testimonials"}
+          name="about"
+          active={activeItem === "about"}
           onClick={this.handleItemClick}
         >
           About

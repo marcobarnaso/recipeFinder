@@ -32,7 +32,7 @@ function App() {
     <div>
       <div className="ui container">
         <Header />
-        <MenuStackable/>
+        <MenuStackable/> 
         <SearchBar searchTerm={fetchRecipes} />
         <div className="ui segment">
           <RecipeList recipes={recipes} onRecipeSelect={setSelectedRecipe} />
@@ -41,5 +41,7 @@ function App() {
     </div>
   );
 }
+
+// TODO remove searchbar and recipelist and put it in the Home page, on this App.js we will only have the header, menu and switch for navigation
 
 export default App;

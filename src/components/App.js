@@ -29,9 +29,7 @@ function App() {
     fetchRecipes(searchTerm);
   }, [searchTerm]);
 
-  if (recipes.length === 0) {
-    return <div>Loading...</div>;
-  }
+  console.log(recipes.length);
 
   return (
     <div>

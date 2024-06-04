@@ -11,7 +11,7 @@ const About = () => {
         <div class="content">
           <a class="header">Marvin Rojas</a>
           <div class="meta">
-            <span class="date">Estudiante de Desarrollo de Software</span>
+            <span class="date">Desarrollador de Software</span>
           </div>
           <div class="description">
             Sitio de Buscador de Recetas con React

@@ -3,9 +3,7 @@ import RecipeCard from "./RecipeCard";
 //import useVideos from "../hooks/useVideos";
 
 const RecipeList = ({ recipes }) => {
-  if (Object.keys(recipes).length===0) {
-    return (<div></div>)
-  }
+  
   if (recipes.length===0) {
     return (
 <div className="ui warning message">

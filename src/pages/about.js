@@ -4,22 +4,22 @@ import dog from "../images/dog.png"
 const About = () => {
   return (
     <div>
-      <div class="ui card">
-        <div class="image">
+      <div className="ui card">
+        <div className="image">
           <img src={dog} alt="Me"/>
         </div>
-        <div class="content">
-          <a class="header">Marvin Rojas</a>
-          <div class="meta">
-            <span class="date">Desarrollador de Software</span>
+        <div className="content">
+          <a className="header">Marvin Rojas</a>
+          <div className="meta">
+            <span className="date">Desarrollador de Software</span>
           </div>
-          <div class="description">
+          <div className="description">
             Sitio de Buscador de Recetas con React
           </div>
         </div>
-        <div class="extra content">
+        <div className="extra content">
           <a>
-            <i class="react icon"></i>
+            <i className="react icon"></i>
             2024
           </a>
         </div>

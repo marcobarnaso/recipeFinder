@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Authentication = () => {
   return (
@@ -24,10 +25,12 @@ const Authentication = () => {
           </div>
         </div>
         <div class="middle aligned column">
+          <Link to="/signup">
           <div class="ui big button">
             <i class="signup icon"></i>
             Sign Up
           </div>
+          </Link>
         </div>
       </div>
       <div class="ui vertical divider">Or</div>

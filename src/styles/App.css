@@ -68,3 +68,7 @@ body {
   background-color: #484a4d;
   color: #1b1c1d;
 }
+
+.ui.form .field>label {
+  color: rgba(255, 255, 255, 0.87);
+}

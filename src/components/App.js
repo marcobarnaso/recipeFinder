@@ -7,6 +7,7 @@ import MenuStackable from "./Menu";
 import Home from "../pages/home";
 import Authentication from "../pages/authentication";
 import About from "../pages/about";
+import SignUp from "../pages/signup";
 
 function App() {
   const [searchTerm, setSearchTerm] = useState("beef");
@@ -43,6 +44,7 @@ function App() {
           />
           <Route path="/about" element={<About />} />
           <Route path="/authentication" element={<Authentication />} />
+          <Route path="/signup" element={<SignUp/>}/>
         </Routes>
       </div>
     </div>

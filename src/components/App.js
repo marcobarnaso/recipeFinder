@@ -5,7 +5,7 @@ import "../styles/App.css";
 import Header from "./Header";
 import MenuStackable from "./Menu";
 import Home from "../pages/home";
-import Authentication from "../pages/authentication";
+import Authentication from "../pages/signIn";
 import About from "../pages/about";
 import SignUp from "../pages/signup";
 
@@ -14,7 +14,6 @@ function App() {
   const [recipes, setRecipes] = useState([]);
 
   const fetchRecipes = async (term) => {
-    console.log("corrio fetch recipes");
     const {
       data: { hits },
     } = await edamam.get("", {
@@ -29,8 +28,6 @@ function App() {
   useEffect(() => {
     fetchRecipes(searchTerm);
   }, [searchTerm]);
-
-  console.log(recipes.length);
 
   return (
     <div>

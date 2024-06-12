@@ -36,3 +36,6 @@ export const getUser = () => {
   const authData = JSON.parse(localStorage.getItem("authData"));
   return authData ? authData.user : { error: "Not Authenticated" };
 };
+
+//TODO re-render menu so when you login it shows the correct buttons
+//TODO cancel button on logout modal should just close the modal and not logout

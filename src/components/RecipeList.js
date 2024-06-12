@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from "react";
 import RecipeCard from "./RecipeCard";
 //import useVideos from "../hooks/useVideos";
 
@@ -14,7 +13,7 @@ const RecipeList = ({ recipes }) => {
 </div>
     );
   }
-  const fiveRecipes = recipes.slice(0, 4);
+  const fiveRecipes = recipes.slice(0, 8);
   const renderedList = fiveRecipes.map((recipe) => {
     //search(recipe.label)
     return (

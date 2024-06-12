@@ -8,6 +8,8 @@ import Home from "../pages/home";
 import Authentication from "../pages/signIn";
 import About from "../pages/about";
 import SignUp from "../pages/signup";
+import Favorites from "../pages/Favorites";
+import AuthProvider from "../context/authContext";
 
 function App() {
   const [searchTerm, setSearchTerm] = useState("beef");
@@ -30,21 +32,24 @@ function App() {
   }, [searchTerm]);
 
   return (
-    <div>
-      <div className="ui container">
-        <Header />
-        <MenuStackable />
-        <Routes>
-          <Route
-            path="/"
-            element={<Home searchTerm={fetchRecipes} recipes={recipes} />}
-          />
-          <Route path="/about" element={<About />} />
-          <Route path="/authentication" element={<Authentication />} />
-          <Route path="/signup" element={<SignUp/>}/>
-        </Routes>
+    <AuthProvider>
+      <div>
+        <div className="ui container">
+          <Header />
+          <MenuStackable />
+          <Routes>
+            <Route
+              path="/"
+              element={<Home searchTerm={fetchRecipes} recipes={recipes} />}
+            />
+            <Route path="/about" element={<About />} />
+            <Route path="/authentication" element={<Authentication />} />
+            <Route path="/signup" element={<SignUp />} />
+            <Route path="/favorites" element={<Favorites />} />
+          </Routes>
+        </div>
       </div>
-    </div>
+    </AuthProvider>
   );
 }
 

@@ -14,12 +14,13 @@ const About = () => {
             <span className="date">Desarrollador de Software</span>
           </div>
           <div className="description">
-            Sitio de Buscador de Recetas con React
+            Buscador de Recetas con MERN Stack
           </div>
         </div>
         <div className="extra content">
           <a>
             <i className="react icon"></i>
+            <i className="node js icon"></i>
             2024
           </a>
         </div>

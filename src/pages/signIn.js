@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { loginUser } from "../services/authService";
 import MultiModal from "../components/Modal";
+import { AuthContext } from "../context/authContext";
 
 const Authentication = () => {
+  const {isAuthenticated, loginContext}=useContext(AuthContext)
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [modalOpen, setModalOpen] = useState(false);
@@ -23,6 +25,7 @@ const Authentication = () => {
     const storedData = JSON.parse(localStorage.getItem("authData"));
     setUserData(storedData);
     setModalOpen(true);
+    loginContext()
   };
 
   const handleErrorSignIn = () => {

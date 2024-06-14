@@ -10,6 +10,7 @@ import About from "../pages/about";
 import SignUp from "../pages/signup";
 import Favorites from "../pages/Favorites";
 import AuthProvider from "../context/authContext";
+import { ProtectedRoute } from "./ProtectedRoute";
 
 function App() {
   const [searchTerm, setSearchTerm] = useState("beef");
@@ -45,7 +46,14 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/authentication" element={<Authentication />} />
             <Route path="/signup" element={<SignUp />} />
-            <Route path="/favorites" element={<Favorites />} />
+            <Route
+              path="/favorites"
+              element={
+                <ProtectedRoute>
+                  <Favorites />
+                </ProtectedRoute>
+              }
+            />
           </Routes>
         </div>
       </div>

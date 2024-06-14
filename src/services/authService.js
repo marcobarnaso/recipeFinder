@@ -9,10 +9,10 @@ export const registerUser = async (userData) => {
 
 export const loginUser = async (userData) => {
   const response = await axios.post(`${API_URL}/api/auth/login`, userData);
-  console.log("this is the raw response", response)
+  console.log(response._id);
   if (!response.message) {
-    console.log('this is not good')
     const authData = {
+      _id: response.data._id, //-> no esta salvando el ID sin eso no se puede guardar el favorito
       userName: response.data.name,
       userLastName: response.data.lastName,
       userEmail: response.data.email,
@@ -21,7 +21,7 @@ export const loginUser = async (userData) => {
     localStorage.setItem("authData", JSON.stringify({ authData }));
     return response.data;
   }
-  return {error: "Invalid email or password"}
+  return { error: "Invalid email or password" };
 };
 
 export const logout = () => {
@@ -32,9 +32,16 @@ export const isAuthenticated = () => {
   return !!localStorage.getItem("authData");
 };
 
+export const getToken = () => {
+  const authData = JSON.parse(localStorage.getItem("authData"));
+  return authData.authData.token;
+};
+
 export const getUser = () => {
   const authData = JSON.parse(localStorage.getItem("authData"));
-  return authData ? authData.user : { error: "Not Authenticated" };
+  return authData
+    ? { _id: authData.authData._id, name: authData.authData.userName }
+    : { error: "Not Authenticated" };
 };
 
 //TODO re-render menu so when you login it shows the correct buttons

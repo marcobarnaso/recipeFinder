@@ -4,7 +4,6 @@ import {
   AccordionContent,
   Accordion,
   Icon,
-  Rating,
 } from "semantic-ui-react";
 import IngredientList from "./ingredientList";
 

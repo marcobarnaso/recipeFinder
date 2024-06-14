@@ -1,5 +1,9 @@
 import React, { createContext, useState, useEffect } from "react";
 
+// this manages the global state authentication state
+// the functions loginContext and LogoutContext where
+// put in the components that handle sign in and logout
+
 export const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {

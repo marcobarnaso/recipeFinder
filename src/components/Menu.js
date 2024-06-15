@@ -1,4 +1,4 @@
-import React, { Component, useContext } from "react";
+import React, { Component } from "react";
 import { AuthContext } from "../context/authContext";
 import { Link } from "react-router-dom";
 import { MenuItem, Menu, Modal } from "semantic-ui-react";

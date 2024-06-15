@@ -34,14 +34,14 @@ export const isAuthenticated = () => {
 
 export const getToken = () => {
   const authData = JSON.parse(localStorage.getItem("authData"));
-  return authData.authData.token;
+  return authData ? authData.authData.token : {error:"Please sign in"}
 };
 
 export const getUser = () => {
   const authData = JSON.parse(localStorage.getItem("authData"));
   return authData
     ? { _id: authData.authData._id, name: authData.authData.userName }
-    : { error: "Not Authenticated" };
+    : { error: "Please sign in" };
 };
 
 //TODO re-render menu so when you login it shows the correct buttons

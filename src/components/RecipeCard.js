@@ -7,6 +7,7 @@ import {
   removeFavorites,
 } from "../services/favoriteService";
 import { AuthContext } from "../context/authContext";
+import PlaceholderExampleGrid from "./Placeholder";
 ///!!!!!IMPORTANT had to import the context instead of
 ///!!!!!running isAuthenticated, putting the context
 /// useEffect makes sure the authentication is ready

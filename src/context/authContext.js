@@ -9,6 +9,11 @@ export const AuthContext = createContext();
 const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
+  //find out if using useEffect is why the the 401 on
+  //first render is happening, since, if I understand this
+  //right, the setIsAuthenticated will be called AFTER the
+  //first render
+
   useEffect(() => {
     const authData = localStorage.getItem("authData");
     if (authData) {

@@ -39,7 +39,6 @@ export const removeFavorites = async (favoriteRecipe, token) => {
 };
 
 export const pullFavorites = async (user, token) => {
-    console.log(user)
   const response = await axios.get(
     `${API_URL}/api/auth/fetchFavorites/${user}`,
     {

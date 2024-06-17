@@ -94,14 +94,10 @@ export default class MenuStackable extends Component {
           onClose={this.handleModalClose}
           header="Do you want to logout?"
           content="You won't be able to add recipes to favorites."
-          actions={["Cancel", { key: "done", content: "OK", positive: true }]}
+          actions={[{key: "cancel", content:"Cancel", positive: true}, { key: "done", content: "OK", positive: true }]}
         />
       </Menu>
     );
   }
 }
 
-// export default (props) => {
-//   const navigate = useNavigate();
-//   return <MenuStackable {...props} navigate={navigate} />;
-// };

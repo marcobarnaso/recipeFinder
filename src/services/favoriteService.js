@@ -1,10 +1,10 @@
 import axios from "axios";
-import { getToken } from "./authService";
+//import { getToken } from "./authService";
 
 const API_URL = process.env.REACT_APP_RECIPE_FINDER_URL_DEV;
-const token = getToken();
+//const token = getToken();
 
-export const addFavorites = async (favoriteRecipe) => {
+export const addFavorites = async (favoriteRecipe, token) => {
   try {
     const response = await axios.post(
       `${API_URL}/api/recipes/favorites/${favoriteRecipe.user}`,
@@ -21,7 +21,7 @@ export const addFavorites = async (favoriteRecipe) => {
   }
 };
 
-export const removeFavorites = async (favoriteRecipe) => {
+export const removeFavorites = async (favoriteRecipe, token) => {
   try {
     const response = await axios.delete(
       `${API_URL}/api/recipes/favorites/${favoriteRecipe.user}`,
@@ -38,14 +38,15 @@ export const removeFavorites = async (favoriteRecipe) => {
   }
 };
 
-export const pullFavorites = async (favoriteRecipe) => {
+export const pullFavorites = async (user, token) => {
+    console.log(user)
   const response = await axios.get(
-    `${API_URL}/api/auth/fetchFavorites/${favoriteRecipe.user}`,
+    `${API_URL}/api/auth/fetchFavorites/${user}`,
     {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     }
   );
-  return response;
+  return response ? response : {message: "An error ocurred"};
 };

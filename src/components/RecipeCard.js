@@ -6,7 +6,6 @@ import {
   pullFavorites,
   removeFavorites,
 } from "../services/favoriteService";
-import { getUser } from "../services/authService";
 import { AuthContext } from "../context/authContext";
 ///!!!!!IMPORTANT had to import the context instead of
 ///!!!!!running isAuthenticated, putting the context
@@ -15,35 +14,38 @@ import { AuthContext } from "../context/authContext";
 /// from the backen without actually being authenticated
 /// making the global context is the way to go from now on
 
-const RecipeCard = (recipe) => {
+const RecipeCard = ({recipe}) => {
+  let user=""
+  let token = "" //-> need to find a more elegant way to pass the token on first render
+  //it seems getting the user from the getUser method
+  //is not fast enoughm so I'm grabbing it directly from the 
+  //local storage
+  const extractAuthData = JSON.parse(localStorage.getItem("authData"))
+  if(extractAuthData)
+    {
+  token=extractAuthData.authData.token
+  user=extractAuthData.authData._id
+}
   const [addFavorite, setAddFavorite] = useState(0);
   const { isAuthenticated } = useContext(AuthContext);
-  const user = getUser();
 
-  const favoriteRecipe = {
-    id: recipe.recipe.recipe.uri,
-    user: user._id,
-    title: recipe.recipe.recipe.label,
-    ingredients: recipe.recipe.recipe.ingredientLines,
-    picture: recipe.recipe.recipe.image,
-  };
   const onFavoriteClick = async () => {
     //I forgot to use async/await here when updating the backend
     if (addFavorite === 0) {
       setAddFavorite(1);
-      await addFavorites(favoriteRecipe);
+      await addFavorites(recipe,token);
     } else if (addFavorite === 1) {
       setAddFavorite(0);
-      await removeFavorites(favoriteRecipe);
+      await removeFavorites(recipe,token);
     }
   };
   const fetchFavorites = async () => {
-    const favorites = await pullFavorites(favoriteRecipe);
+    const favorites = await pullFavorites(user, token);
 
     const findFavoriteById = (favorites, id) => {
       return favorites.data.favorites.find((favorite) => favorite.id === id);
     };
-    const recipeFound = findFavoriteById(favorites, favoriteRecipe.id);
+    const recipeFound = findFavoriteById(favorites, recipe.id);
     if (recipeFound) {
       setAddFavorite(1);
     }
@@ -76,9 +78,9 @@ const RecipeCard = (recipe) => {
             </a>
           )}
           <div className="ui grey ribbon label">
-            <i className="utensils icon"></i> {recipe.recipe.recipe.label}
+            <i className="utensils icon"></i> {recipe.title}
           </div>
-          <img src={recipe.recipe.recipe.image} alt={recipe.recipe.label} />
+          <img src={recipe.picture} alt={recipe.title} />
         </div>
         <AccordionStandard ingredients={recipe} />
       </div>

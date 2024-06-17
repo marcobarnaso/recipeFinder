@@ -4,6 +4,7 @@ import { Modal } from "semantic-ui-react";
 
 function MultiModal({ pHeader, pContent, pModalOpen, setModalOpen, pRedirect }) {
   const navigate = useNavigate();
+  
   const handleDoneClick = () => {
     setModalOpen(false) ;
     navigate(pRedirect);

@@ -52,7 +52,7 @@ export default class AccordionStandard extends Component {
           <a
             href={
               "https://www.youtube.com/results?search_query=" +
-              this.props.ingredients.recipe.recipe.label +
+              this.props.ingredients.label +
               " preparation" 
             } target="_blank" rel="noopener noreferrer" 
           >

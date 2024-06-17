@@ -11,6 +11,7 @@ import SignUp from "../pages/signup";
 import Favorites from "../pages/Favorites";
 import AuthProvider from "../context/authContext";
 import { ProtectedRoute } from "./ProtectedRoute";
+import cleanRecipes from "../utils/cleanRecipes";
 
 function App() {
   const [searchTerm, setSearchTerm] = useState("beef");
@@ -24,14 +25,14 @@ function App() {
         q: term,
       },
     });
-    setRecipes(hits);
+    const info = cleanRecipes(hits)
+    setRecipes(info);
     setSearchTerm(term);
   };
 
   useEffect(() => {
     fetchRecipes(searchTerm);
   }, [searchTerm]);
-
   return (
     <AuthProvider>
       <div>
@@ -50,7 +51,7 @@ function App() {
               path="/favorites"
               element={
                 <ProtectedRoute>
-                  <Favorites />
+                  <Favorites recipes={recipes}/>
                 </ProtectedRoute>
               }
             />

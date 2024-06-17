@@ -9,7 +9,7 @@ export const registerUser = async (userData) => {
 
 export const loginUser = async (userData) => {
   const response = await axios.post(`${API_URL}/api/auth/login`, userData);
-  console.log(response._id);
+  console.log(response.data._id);
   if (!response.message) {
     const authData = {
       _id: response.data._id, //-> no esta salvando el ID sin eso no se puede guardar el favorito

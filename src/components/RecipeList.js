@@ -2,7 +2,6 @@ import RecipeCard from "./RecipeCard";
 //import useVideos from "../hooks/useVideos";
 
 const RecipeList = ({ recipes }) => {
-  
   if (recipes.length===0) {
     return (
 <div className="ui warning message">
@@ -13,12 +12,12 @@ const RecipeList = ({ recipes }) => {
 </div>
     );
   }
-  const fiveRecipes = recipes.slice(0, 8);
-  const renderedList = fiveRecipes.map((recipe) => {
+  const eightRecipes = recipes.slice(0, 8);
+  const renderedList = eightRecipes.map((recipe) => {
     //search(recipe.label)
-    return (
+    return ( 
       <RecipeCard
-        key={recipe.recipe.uri}
+        key={recipe.id}
         recipe={recipe}
       />
     );

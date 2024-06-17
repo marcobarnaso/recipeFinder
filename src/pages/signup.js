@@ -143,6 +143,7 @@ const SignUpForm = () => {
         pContent="Now you can add recipes to favorites."
         pRedirect="/"
         pModalOpen={modalOpen}
+        setModalOpen={setModalOpen}
       />
     </>
   );

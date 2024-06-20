@@ -32,7 +32,6 @@ export default class MenuStackable extends Component {
   render() {
     const { activeItem, modalOpen } = this.state;
     const { isAuthenticated, userName } = this.context;
-    console.log(userName.userName);
     return (
       <Menu stackable>
         <MenuItem>

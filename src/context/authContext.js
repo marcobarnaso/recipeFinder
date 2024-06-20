@@ -44,7 +44,6 @@ const AuthProvider = ({ children }) => {
     setUser(null)
     setIsAuthenticated(false);
   };
-  console.log(userName)
   return (
     <AuthContext.Provider
       value={{

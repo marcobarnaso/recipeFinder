@@ -14,8 +14,6 @@ const Favorites = () => {
     setFavoritesArray(favorites.data.favorites);
   };
 
-  console.log(favoritesArray[0])
-
   useEffect(() => {
     if (isAuthenticated) {
       fetchFavorites();

@@ -21,7 +21,6 @@ const RecipeCard = ({recipe}) => {
   const onFavoriteClick = async () => {
     //I forgot to use async/await here when updating the backend
     if (addFavorite === 0) {
-      console.log(recipe)
       setAddFavorite(1);
       await addFavorites(user, recipe, token);
     } else if (addFavorite === 1) {

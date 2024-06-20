@@ -25,7 +25,7 @@ const Authentication = () => {
     const storedData = JSON.parse(localStorage.getItem("authData"));
     setUserData(storedData);
     setModalOpen(true);
-    loginContext()
+    loginContext(storedData)
   };
 
   const handleErrorSignIn = () => {

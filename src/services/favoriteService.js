@@ -1,13 +1,11 @@
 import axios from "axios";
-//import { getToken } from "./authService";
 
 const API_URL = process.env.REACT_APP_RECIPE_FINDER_URL_DEV;
-//const token = getToken();
 
-export const addFavorites = async (favoriteRecipe, token) => {
+export const addFavorites = async (user, favoriteRecipe, token) => {
   try {
     const response = await axios.post(
-      `${API_URL}/api/recipes/favorites/${favoriteRecipe.user}`,
+      `${API_URL}/api/recipes/favorites/${user}`,
       favoriteRecipe,
       {
         headers: {
@@ -15,16 +13,16 @@ export const addFavorites = async (favoriteRecipe, token) => {
         },
       }
     );
-    console.log(response);
+    console.log({message: "Added to Favorites", status:response.status});
   } catch (error) {
-    console.error("Error adding favorite recipe:", error);
+    console.error({ error: "Error adding favorite recipe:" }, error);
   }
 };
 
-export const removeFavorites = async (favoriteRecipe, token) => {
+export const removeFavorites = async (user, favoriteRecipe, token) => {
   try {
     const response = await axios.delete(
-      `${API_URL}/api/recipes/favorites/${favoriteRecipe.user}`,
+      `${API_URL}/api/recipes/favorites/${user}`,
       {
         headers: { Authorization: `Bearer ${token}` },
         data: favoriteRecipe,
@@ -32,20 +30,24 @@ export const removeFavorites = async (favoriteRecipe, token) => {
         //the data header for DELETE
       }
     );
-    console.log(response);
+    console.log({message: "Removed from Favorites", status:response.status});
   } catch (error) {
-    console.error("Error removing favorite recipe:", error);
+    console.error({ error: "Error removing favorite recipe:" }, error);
   }
 };
 
 export const pullFavorites = async (user, token) => {
-  const response = await axios.get(
-    `${API_URL}/api/auth/fetchFavorites/${user}`,
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
-  return response ? response : {message: "An error ocurred"};
+  try {
+    const response = await axios.get(
+      `${API_URL}/api/auth/fetchFavorites/${user}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    return response;
+  } catch (error) {
+    console.error({ error: "An error ocurred" });
+  }
 };

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Routes, Route } from "react-router-dom";
 import edamam from "../services/Edamam";
 import "../styles/App.css";
@@ -9,7 +9,7 @@ import Authentication from "../pages/signIn";
 import About from "../pages/about";
 import SignUp from "../pages/signup";
 import Favorites from "../pages/Favorites";
-import AuthProvider from "../context/authContext";
+import AuthProvider, { AuthContext } from "../context/authContext";
 import { ProtectedRoute } from "./ProtectedRoute";
 import cleanRecipes from "../utils/cleanRecipes";
 
@@ -17,6 +17,7 @@ function App() {
   const [searchTerm, setSearchTerm] = useState("beef");
   const [recipes, setRecipes] = useState([]);
 
+  const { loading } = useContext(AuthContext);
   const fetchRecipes = async (term) => {
     const {
       data: { hits },
@@ -25,7 +26,7 @@ function App() {
         q: term,
       },
     });
-    const info = cleanRecipes(hits)
+    const info = cleanRecipes(hits);
     setRecipes(info);
     setSearchTerm(term);
   };
@@ -33,12 +34,18 @@ function App() {
   useEffect(() => {
     fetchRecipes(searchTerm);
   }, [searchTerm]);
+
+
+  if (loading) {
+    return <div>Loading...</div>; // Render a loading indicator while auth state is being determined
+  }
+
   return (
     <AuthProvider>
       <div>
         <div className="ui container">
           <Header />
-          <MenuStackable />
+          <MenuStackable fetchRecipes={fetchRecipes} />
           <Routes>
             <Route
               path="/"
@@ -51,7 +58,7 @@ function App() {
               path="/favorites"
               element={
                 <ProtectedRoute>
-                  <Favorites recipes={recipes}/>
+                  <Favorites recipes={recipes} />
                 </ProtectedRoute>
               }
             />

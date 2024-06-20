@@ -141,7 +141,7 @@ const SignUpForm = () => {
       <MultiModal
         pHeader="Welcome"
         pContent="Now you can add recipes to favorites."
-        pRedirect="/"
+        pRedirect="/authentication"
         pModalOpen={modalOpen}
         setModalOpen={setModalOpen}
       />

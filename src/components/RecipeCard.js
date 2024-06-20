@@ -7,7 +7,6 @@ import {
   removeFavorites,
 } from "../services/favoriteService";
 import { AuthContext } from "../context/authContext";
-import PlaceholderExampleGrid from "./Placeholder";
 ///!!!!!IMPORTANT had to import the context instead of
 ///!!!!!running isAuthenticated, putting the context
 /// useEffect makes sure the authentication is ready
@@ -16,49 +15,45 @@ import PlaceholderExampleGrid from "./Placeholder";
 /// making the global context is the way to go from now on
 
 const RecipeCard = ({recipe}) => {
-  let user=""
-  let token = "" //-> need to find a more elegant way to pass the token on first render
-  //it seems getting the user from the getUser method
-  //is not fast enoughm so I'm grabbing it directly from the 
-  //local storage
-  const extractAuthData = JSON.parse(localStorage.getItem("authData"))
-  if(extractAuthData)
-    {
-  token=extractAuthData.authData.token
-  user=extractAuthData.authData._id
-}
   const [addFavorite, setAddFavorite] = useState(0);
-  const { isAuthenticated } = useContext(AuthContext);
+  const { isAuthenticated, token, user, loading } = useContext(AuthContext);
 
   const onFavoriteClick = async () => {
     //I forgot to use async/await here when updating the backend
     if (addFavorite === 0) {
+      console.log(recipe)
       setAddFavorite(1);
-      await addFavorites(recipe,token);
+      await addFavorites(user, recipe, token);
     } else if (addFavorite === 1) {
       setAddFavorite(0);
-      await removeFavorites(recipe,token);
+      await removeFavorites(user, recipe,token);
     }
   };
-  const fetchFavorites = async () => {
-    const favorites = await pullFavorites(user, token);
-
-    const findFavoriteById = (favorites, id) => {
-      return favorites.data.favorites.find((favorite) => favorite.id === id);
-    };
-    const recipeFound = findFavoriteById(favorites, recipe.id);
-    if (recipeFound) {
-      setAddFavorite(1);
+  const fetchFavoriteCards = async () => {
+    if (!user || !token) return; // Ensure user and token are available
+    try {
+      const favorites = await pullFavorites(user, token);
+      const findFavoriteById = (favorites, id) => {
+        return favorites.data.favorites.find((favorite) => favorite.id === id);
+      };
+      const recipeFound = findFavoriteById(favorites, recipe.id);
+      if (recipeFound) {
+        setAddFavorite(1);
+      }
+    } catch (error) {
+      console.error("Error fetching favorites:", error);
     }
   };
 
   useEffect(() => {
-    if (isAuthenticated) {
-      fetchFavorites();
+    if (isAuthenticated && !loading) { // Ensure loading is false
+      fetchFavoriteCards();
     }
-  }, [isAuthenticated]); //-> use effect only runs once after load
-  // I originally forgot to add the empty array
+  }, [isAuthenticated, loading]); // Include loading in the dependency array
 
+  if (loading) {
+    return <div>Loading...</div>; // Render a loading indicator while auth state is being determined
+  }
   return (
     <>
       <div className="card">

@@ -3,19 +3,18 @@ import RecipeList from "../components/RecipeList";
 import { pullFavorites } from "../services/favoriteService";
 import { AuthContext } from "../context/authContext";
 import { useContext } from "react";
-import { getToken, getUser } from "../services/authService";
 
 const Favorites = () => {
   const [favoritesArray, setFavoritesArray] = useState([]);
   const [loading, setLoading] = useState(true);
-  const { isAuthenticated } = useContext(AuthContext);
-  const user = getUser();
-  const token = getToken();
+  const { isAuthenticated, user, token } = useContext(AuthContext);
 
   const fetchFavorites = async () => {
-    const favorites = await pullFavorites(user._id, token);
+    const favorites = await pullFavorites(user, token);
     setFavoritesArray(favorites.data.favorites);
   };
+
+  console.log(favoritesArray[0])
 
   useEffect(() => {
     if (isAuthenticated) {

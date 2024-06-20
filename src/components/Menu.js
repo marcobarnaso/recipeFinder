@@ -3,7 +3,6 @@ import { AuthContext } from "../context/authContext";
 import { Link } from "react-router-dom";
 import { MenuItem, Menu, Modal } from "semantic-ui-react";
 import { logout } from "../services/authService";
-import { isAuthenticated } from "../services/authService";
 
 export default class MenuStackable extends Component {
   static contextType = AuthContext;
@@ -32,6 +31,7 @@ export default class MenuStackable extends Component {
 
   render() {
     const { activeItem, modalOpen } = this.state;
+    const {isAuthenticated} = this.context
 
     return (
       <Menu stackable>
@@ -49,7 +49,7 @@ export default class MenuStackable extends Component {
         >
           Home
         </MenuItem>
-        {isAuthenticated() && (
+        {isAuthenticated && (
           <>
             <MenuItem
               as={Link}
@@ -71,7 +71,7 @@ export default class MenuStackable extends Component {
             </MenuItem>
           </>
         )}
-        {!isAuthenticated() && (
+        {!isAuthenticated && (
           <MenuItem
             as={Link}
             to="authentication"

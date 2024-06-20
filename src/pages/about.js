@@ -11,10 +11,10 @@ const About = () => {
         <div className="content">
           <a className="header">Marvin Rojas</a>
           <div className="meta">
-            <span className="date">Desarrollador de Software</span>
+            <span className="date">Software Developer</span>
           </div>
           <div className="description">
-            Buscador de Recetas con MERN Stack
+            Recipe finder with MERN Stack
           </div>
         </div>
         <div className="extra content">

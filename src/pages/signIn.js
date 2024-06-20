@@ -86,7 +86,7 @@ const Authentication = () => {
             : "Invalid email or Password"
         }
         pContent={
-          userData ? "Now you can add recipes to favorites" : "Please try again"
+          userData ? "Now you can click on the hearts on the recipes to add them to favorites." : "Please try again"
         }
         pRedirect={userData ? "/" : "/authentication"}
         pModalOpen={modalOpen}

@@ -68,6 +68,7 @@ const SignUpForm = () => {
 
   return (
     <>
+    <div className="ui segment">
       <Form onSubmit={handleSubmit} loading={loading} error={!!error}>
         <Form.Field
           id="form-input-control-first-name"
@@ -138,9 +139,10 @@ const SignUpForm = () => {
         </Button>
         {error && <Message error content={error} />}
       </Form>
+      </div>
       <MultiModal
         pHeader="Welcome"
-        pContent="Now you can add recipes to favorites."
+        pContent="Please sign in with your credentials."
         pRedirect="/authentication"
         pModalOpen={modalOpen}
         setModalOpen={setModalOpen}

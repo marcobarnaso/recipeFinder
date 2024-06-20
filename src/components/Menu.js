@@ -31,8 +31,8 @@ export default class MenuStackable extends Component {
 
   render() {
     const { activeItem, modalOpen } = this.state;
-    const {isAuthenticated} = this.context
-
+    const { isAuthenticated, userName } = this.context;
+    console.log(userName.userName);
     return (
       <Menu stackable>
         <MenuItem>
@@ -91,6 +91,15 @@ export default class MenuStackable extends Component {
         >
           About
         </MenuItem>
+        {isAuthenticated && (
+          <MenuItem
+            name="Account"
+            active={activeItem === "about"}
+            onClick={this.handleItemClick}
+          >
+            Account: {userName.userName} {userName.userLastName}
+          </MenuItem>
+        )}
         <Modal
           open={modalOpen}
           header="Do you want to logout?"

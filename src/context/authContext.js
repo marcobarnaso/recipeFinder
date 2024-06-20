@@ -11,6 +11,7 @@ const AuthProvider = ({ children }) => {
   const [token, setToken] = useState("");
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState(null)
+  const [userName, setUserName] = useState("")
 
   useEffect(() => {
     const authData = JSON.parse(localStorage.getItem
@@ -19,6 +20,7 @@ const AuthProvider = ({ children }) => {
       setUser(authData.authData._id)
       setIsAuthenticated(true);
       setToken(authData.authData.token);
+      setUserName({userName: authData.authData.userName, userLastName: authData.authData.userLastName})
     }
     setLoading(false); // Set loading to false once auth state is determined
   }, []);
@@ -34,6 +36,7 @@ const AuthProvider = ({ children }) => {
     setIsAuthenticated(true);
     setToken(authData.authData.token);
     setUser(authData.authData._id);
+    setUserName({userName: authData.authData.userName, userLastName: authData.authData.userLastName})
   }
 
   const logoutContext = () => {
@@ -41,7 +44,7 @@ const AuthProvider = ({ children }) => {
     setUser(null)
     setIsAuthenticated(false);
   };
-
+  console.log(userName)
   return (
     <AuthContext.Provider
       value={{
@@ -51,6 +54,7 @@ const AuthProvider = ({ children }) => {
         user,
         token,
         loading,
+        userName,
         setLoading
       }}
     >
